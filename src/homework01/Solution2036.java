@@ -1,21 +1,17 @@
 package homework01;
 
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class Solution2036 {
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Scanner scanner = new Scanner(System.in);
 
         int size = scanner.nextInt();
         String[] strings = new String[size];
 
         for (int i = 0; i < size; i++) {
-            strings[i] = reader.readLine().toLowerCase();
+            strings[i] = scanner.next().toLowerCase();
         }
 
         for (int i = 0; i < strings.length; i++) {
