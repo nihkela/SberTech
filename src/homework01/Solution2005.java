@@ -10,7 +10,7 @@ public class Solution2005 {
 
         int size = scanner.nextInt();
         int[] array = new int[size];
-        Integer min = MAX_VALUE;
+        int min = MAX_VALUE;
         int index = 0;
 
         for (int i = 0; i < size; i++) {
