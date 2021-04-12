@@ -1,4 +1,4 @@
-package homework02;
+package homework02.hw;
 
 public class Car {
     private String model;

@@ -1,4 +1,6 @@
-package homework02;
+package homework02.hw;
+
+import homework02.hw.Car;
 
 import java.util.ArrayList;
 import java.util.List;
