@@ -40,16 +40,20 @@ public class CountMapImpl<T> implements CountMap<T> {
 
     @Override
     public void addAll(CountMap<? extends T> source) {
-
+        Map<? extends T, Integer> m = source.toMap();
+        for (Map.Entry<? extends T, Integer> e : m.entrySet()) {
+            int count = this.getCount(e.getKey());
+            map.put(e.getKey(), count + e.getValue());
+        }
     }
 
     @Override
     public Map<T, Integer> toMap() {
-        return null;
+        return new HashMap<>(map);
     }
 
     @Override
     public void toMap(Map<? super T, Integer> destination) {
-
+        destination.putAll(map);
     }
 }
