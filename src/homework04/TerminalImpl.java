@@ -1,8 +1,11 @@
 package homework04;
 
+import java.util.Scanner;
+
 public class TerminalImpl implements Terminal {
-    private final TerminalServer server;
-    private final PinValidator pinValidator;
+    private final TerminalServer server = new TerminalServer();
+    private final PinValidator pinValidator = new PinValidator();
+    Scanner scanner = new Scanner(System.in);
 
     @Override
     public void checkBalance() {
@@ -10,7 +13,12 @@ public class TerminalImpl implements Terminal {
     }
 
     @Override
-    public void cash() {
+    public void putMoney() {
+
+    }
+
+    @Override
+    public void getMoney() {
 
     }
 }
