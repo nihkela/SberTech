@@ -9,7 +9,17 @@ public class TerminalImpl implements Terminal {
 
     @Override
     public void checkBalance() {
+        try {
+            pinValidator.checkPin(scanner.nextInt());
+            if (pinValidator.pinCorrect) {
 
+            } else {
+                throw new Exception();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
