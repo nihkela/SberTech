@@ -12,8 +12,9 @@ public class TerminalImpl implements Terminal {
         try {
             pinValidator.checkPin(scanner.nextInt());
             if (pinValidator.pinCorrect) {
-
+                System.out.println(TerminalServer.money);
             } else {
+                // wrong password
                 throw new Exception();
             }
 
@@ -24,11 +25,33 @@ public class TerminalImpl implements Terminal {
 
     @Override
     public void putMoney() {
-
+        if (!(pinValidator.pinCorrect)) {
+            checkBalance();
+        }
+        int sum = scanner.nextInt();
+        try {
+            if (server.checkMoney(sum)) {
+                server.putMoney(sum);
+                System.out.println(TerminalServer.money);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void getMoney() {
-
+        if (!(pinValidator.pinCorrect)) {
+            checkBalance();
+        }
+        int sum = scanner.nextInt();
+        try {
+            if (server.checkMoney(sum)) {
+                server.getMoney(sum);
+                System.out.println(TerminalServer.money);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

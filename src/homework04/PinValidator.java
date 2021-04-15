@@ -5,8 +5,8 @@ public class PinValidator {
     int count = 0;
     boolean pinCorrect = false;
 
-    public void checkPin(int pin) throws Exception {
-        if (this.pin == pin) {
+    public void checkPin(int p) throws Exception {
+        if (pin == p) {
             pinCorrect = true;
         }
         else {
