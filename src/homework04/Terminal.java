@@ -1,9 +1,9 @@
 package homework04;
 
 public interface Terminal {
-    public void checkBalance();
+    public void checkBalance() throws InterruptedException;
 
-    public void putMoney();
+    public void putMoney() throws InterruptedException;
 
-    public void getMoney();
+    public void getMoney() throws InterruptedException;
 }

@@ -1,5 +1,10 @@
 package homework04;
 
+import homework04.handle_exceptions.AccountIsLockedException;
+import homework04.handle_exceptions.NotEnoughMoneyException;
+import homework04.handle_exceptions.PinException;
+import homework04.handle_exceptions.RemainderException;
+
 import java.util.Scanner;
 
 public class TerminalImpl implements Terminal {
@@ -8,23 +13,25 @@ public class TerminalImpl implements Terminal {
     Scanner scanner = new Scanner(System.in);
 
     @Override
-    public void checkBalance() {
+    public void checkBalance() throws InterruptedException {
         try {
             pinValidator.checkPin(scanner.nextInt());
             if (pinValidator.pinCorrect) {
                 System.out.println(TerminalServer.money);
             } else {
-                // wrong password
-                throw new Exception();
+                throw new PinException("Неправильный пин-код");
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (PinException e) {
+            System.out.println("Неправильный пин-код");
+        } catch (AccountIsLockedException a) {
+            System.out.println("Превышен лимит попыток");
+            Thread.sleep(10000);
         }
     }
 
     @Override
-    public void putMoney() {
+    public void putMoney() throws InterruptedException {
         if (!(pinValidator.pinCorrect)) {
             checkBalance();
         }
@@ -34,13 +41,13 @@ public class TerminalImpl implements Terminal {
                 server.putMoney(sum);
                 System.out.println(TerminalServer.money);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (RemainderException e) {
+            System.out.println("Сумма не кратна 100");
         }
     }
 
     @Override
-    public void getMoney() {
+    public void getMoney() throws InterruptedException {
         if (!(pinValidator.pinCorrect)) {
             checkBalance();
         }
@@ -50,8 +57,10 @@ public class TerminalImpl implements Terminal {
                 server.getMoney(sum);
                 System.out.println(TerminalServer.money);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (NotEnoughMoneyException e) {
+            System.out.println("Недостаточно денег");
+        } catch (RemainderException r) {
+            System.out.println("Сумма не кратна 100");
         }
     }
 }
